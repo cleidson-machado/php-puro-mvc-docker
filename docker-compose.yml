@@ -1,0 +1,45 @@
+version: "3.7"
+ 
+services:
+  php-phpmyadmin-xdebug:
+    container_name: dev-xdebug-php-full
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    ports:  
+    - "80:80"
+    - "443:443"
+    volumes:
+    - ./www/:/var/www/html
+    links:
+    - db
+
+  db:
+    image: mysql:5.7
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: my_secret_password
+      MYSQL_DATABASE: app_db
+      MYSQL_USER: db_user
+      MYSQL_PASSWORD: db_user_pass
+    restart: always
+    ports:
+      - "3306:3306"
+    volumes: 
+      - dblabphp:/var/lib/mysql
+  
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: pma
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - 8081:80
+
+volumes:
+  dblabphp:

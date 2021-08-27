@@ -1,0 +1,14 @@
+				<section>
+					<h1>Postagens Page:</h1>
+
+					{% for postagem in postListController %}
+						<article>
+							<header>
+								<h2><a href="http://localhost/?pagina=post&metodo=index&id={{postagem.id}}">ID: | {{postagem.id}} | {{postagem.titulo}}</a></h2>
+							</header>
+
+							<p>{{postagem.conteudo}}</p>
+						</article>
+					{% endfor %}
+
+				</section>
