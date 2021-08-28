@@ -51,7 +51,7 @@ class ComentarioDao extends ComentarioEntity
 
             $dataBase = ConnexDbConstruct::openLinkConnection();
 
-            $sql = "INSERT INTO comentario (nome, mensagem, id_postagem) VALUES (:nom, :msg, :idp)";
+            $sql = "INSERT INTO comentarioZZZ (nome, mensagem, id_postagem) VALUES (:nom, :msg, :idp)";
             $sql = $dataBase->prepare($sql);
 
 

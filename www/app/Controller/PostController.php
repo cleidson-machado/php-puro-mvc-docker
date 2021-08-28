@@ -35,7 +35,7 @@
 
 		// PAREI AQUI.. EM 11/08/2021 AS 18:30 Hs... add try cath e redirecionamentos / avisos em caso erro aqui??
 		// CREATE FOR TESTE PASS A ERROR TO ANOTHER CLASS, BUT IT NOT WORKING YET..26/08/2021
-		public function addComent()
+		public function addComent_BKP_IS_WORKING()
 		{
 
 			try {
@@ -53,6 +53,20 @@
 					header('Location: http://localhost/?pagina=post&metodo=index&id='.$_POST['id']);
 			}
 
+		}
+
+
+		public function addComent()
+		{
+			try {
+				PostBrController::insertUpperCaseRule($_POST);
+			} catch (Exception $e) {
+				//CREATE A SIMPLE JAVASCRIP ALERT!!
+				echo '<script>alert("'.$e->getMessage().'");</script>'; // GET THE ERROR MESSAGE FROM THE PHP CLASSE FILES
+				echo '<script>alert("'.$e->getFile().'");</script>'; //GET WHAT IS THE PHP FILE NAME WITH THE ERROR!!
+				echo '<script>location.href="http://localhost/?pagina=post&metodo=index&id='.$_POST['id'].'"</script>';
+			}
+				
 		}
 
 
